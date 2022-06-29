@@ -1,0 +1,796 @@
+/*universal*/
+:root {
+    --main-color: rgba(109,0,25,1);
+    --secondary-color: rgba(255,168,76,1);
+}
+
+@font-face {
+    font-family: '8bit';
+    src: url('fonts/VT323-Regular.ttf');
+}
+
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.Dashboard {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr 5fr;
+    grid-template-areas: 
+    "sidebar usermenu"
+    "sidebar activityDash";
+}
+
+li > img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+/* left-side nav sidebar*/
+/**/
+.sidebar {
+    position: relative;
+    background: linear-gradient(to bottom, rgba(255,168,76,1) 0%,rgba(255,123,13,1) 100%);
+    box-shadow: 0vmin 0.125vmin 1vmin 0.125vmin var(--secondary-color), 
+    0vmin 0.75vmin 0.5vmin 0.5vmin beige;
+    grid-area: sidebar;
+    display: grid;
+    grid-template-rows: 0.25fr 0.5fr 1fr;
+    padding: 0 1vmin 0 1vmin;
+    z-index: 1;
+    min-width: 30vmin;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.sidebar > h1 {
+    font-family: '8bit', 'Courier New', Courier, monospace;
+    background-image: linear-gradient(135deg, rgba(169,3,41,0.6) 0%,rgba(143,2,34,0.8) 44%,rgba(109,0,25,1) 100%);
+    background-size: contain;
+    -webkit-background-clip: text;
+    color: transparent;
+    letter-spacing: 0.5vmin;
+    height: 100%;
+    max-width: 100%;
+    font-size: 6vmin;
+    position: relative;
+    top: -1vmin;
+    left:7vmin;
+    text-shadow: 0vmin 0.5vmin white;
+}
+
+/*the following before and after create the chicken icon next to the h1 header*/
+.sidebar > h1::before {
+    position: absolute;
+    font-family: Times;
+    content: "------------";
+    text-align: right;
+    letter-spacing: -1vmin;
+    text-shadow: 
+    0.6vmin 0.5vmin black,
+    0.6vmin 0.3vmin white,
+    -0.4vmin -0.4vmin gold,
+    -0.6vmin -0.55vmin black,
+    -0.4vmin -0.7vmin gold,
+    -0.4vmin -0.8vmin gold,
+    0.6vmin 0.4vmin white;
+    font-size: 2vmin;
+    color: white;
+    background-color: black;
+    width: 3vmin;
+    height: 3vmin;
+    border-radius: 50%;
+    top: 1.25vmin;
+    left: -6vmin;
+    border: 0.6vmin solid white;
+    box-shadow: 
+    0.1vmin -0.3vmin black inset,
+    -0.1vmin -0.3vmin black inset,
+    0.4vmin 0.4vmin gold inset,
+    0.8vmin 0.8vmin coral inset,
+    1.2vmin 1.2vmin gold inset,
+    1.6vmin 1.6vmin coral inset,
+    2vmin 2vmin gold inset,
+    2.4vmin 2.4vmin coral inset,
+    0.3vmin 0vmin red, 
+    0vmin .3vmin red, 
+    0vmin -0.4vmin white,
+    0.57vmin 0.15vmin black,
+    0.57vmin 0vmin white,
+    0.75vmin 0.25vmin gold,
+    0.85vmin 0vmin red,
+    0.5vmin -0.25vmin red,
+    0.5vmin -0.5vmin gold,
+    0.5vmin 0.5vmin red,
+    0.7vmin 0.6vmin white;
+    transform: scaleY(-1) scaleX(-1);
+}
+
+.sidebar > h1::after {
+    font-family: Times;
+    content: "^";
+    text-shadow: 
+    0 -0.3vmin black;
+    font-weight: bolder;
+    letter-spacing: -1.1vmin;
+    writing-mode: vertical-lr;
+    white-space: pre-wrap;
+    font-size: 3vmin;
+    color: gold;
+    background-color: red;
+    position: absolute;
+    top: 3.25vmin;
+    left: -3.6vmin;
+    height: 0.7vmin;
+    width: 1.3vmin;
+    border-radius: 0 0 1.5vmin 1.5vmin;
+    box-shadow: 
+    0vmin 0.15vmin black inset,
+    0.2vmin 0 black inset,
+    -0.2vmin 0 black inset,
+    0vmin -0.2vmin black inset,
+    0.3vmin 0 white inset,
+    -0.3vmin 0 white inset,
+    0vmin -0.3vmin white inset,
+    0.55vmin 0vmin gold,
+    -1vmin 0vmin gold,
+    -2vmin 0vmin red,
+    -3vmin 0vmin gold,
+    0.25vmin 0.5vmin orange,
+    -0.75vmin 0.5vmin red,
+    -1.75vmin 0.5vmin yellow,
+    -2.75vmin 0.5vmin orange,
+    -0.25vmin 1vmin white,
+    -1.25vmin 1vmin coral,
+    -2.25vmin 1vmin white,
+    -0.75vmin 1.5vmin red,
+    -1.75vmin 1.5vmin gold,
+    -1.25vmin 1.75vmin red,
+    0.55vmin 0.5vmin gold,
+    0.3vmin 1.25vmin gold,
+    0.3vmin 1vmin gold,
+    0.6vmin 1.25vmin red,
+    0.35vmin 1.4vmin red,
+    -0.25vmin 1.75vmin coral,
+    -0.75vmin 2vmin gold;
+}
+
+.sidebar > ul {
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 0 2vmin 0vmin 2vmin;
+ }
+
+ .sidebar > ul > li {
+    width: fit-content;
+    position: relative;
+    left: 3vmin;
+    margin: 1vmin 0 1vmin 0;
+    font-family: '8bit', 'Courier New', Courier, monospace;
+    font-size: 3vmin;
+    color: white;
+    text-shadow:
+    -1px -1px 0 var(--main-color),  
+    1px -1px 0 var(--main-color),
+    -1px 1px 0 var(--main-color),
+    1px 1px 0 var(--main-color);
+ }
+
+ .sidebar > ul > li:hover {
+     cursor: pointer;
+     text-shadow:
+     -1px -1px 0 var(--secondary-color),  
+     1px -1px 0 var(--secondary-color),
+     -1px 1px 0 var(--secondary-color),
+     1px 1px 0 var(--secondary-color);
+ }
+
+/*the following before and afters for each list child create the icons next to the nav links*/
+ .sidebar > .manageProfile > li:nth-child(1)::before {
+    content: "";
+    position: absolute;
+    border-left: 0.75vmin solid transparent;
+    border-right: 0.75vmin solid transparent;
+    border-bottom: 0.75vmin solid var(--main-color);
+    left: -2.5vmin;
+    top: 0.6vmin;
+ }
+
+ .sidebar > .manageProfile > li:nth-child(1)::after {
+    content: "";
+    position: absolute;
+    height: 0.5vmin;
+    width: 0.5vmin;
+    border-top: 0.5vmin solid var(--main-color);
+    border-right: 0.5vmin solid var(--main-color);
+    border-left: 0.5vmin solid var(--main-color);
+    background-color: transparent;
+    left: -2.5vmin;
+    top: 1.35vmin;
+ }
+
+ .sidebar > .manageProfile > li:nth-child(2)::before {
+    content: "";
+    position: absolute;
+    height: 1vmin;
+    width: 1vmin;
+    border-radius: 50%;
+    background-color: var(--main-color);
+    left: -2.3vmin;
+    top: 0.6vmin;
+ }
+
+ .sidebar > .manageProfile > li:nth-child(2)::after {
+    content: "";
+    position: absolute;
+    height: 1.25vmin;
+    width: 1.5vmin;
+    background-color: var(--main-color);
+    border-radius: 2vmin 2vmin 0 0;
+    left: -2.5vmin;
+    top: 1.35vmin;
+ }
+
+
+ .sidebar > .manageProfile > li:nth-child(3)::before {
+    content: "";
+    position: absolute;
+    height: 1.5vmin;
+    width: 1.5vmin;
+    background-color: var(--main-color);
+    border-radius: 50%;
+    left: -2.5vmin;
+    top: 0.8vmin;
+ }
+
+ .sidebar > .manageProfile > li:nth-child(3)::after {
+    content: "";
+    height: 0.45vmin;
+    width: 0.34vmin;
+    background-color: transparent;
+    border-left: 0.15vmin solid var(--secondary-color);
+    border-bottom: 0.15vmin solid var(--secondary-color);
+    position: absolute;
+    left: -1.9vmin;
+    top: 1.05vmin;
+ }
+
+ .sidebar > .manageProfile > li:nth-child(4)::before {
+    content: "";
+    position: absolute;
+    height: 1.65vmin;
+    width: 1.4vmin;
+    background-color: var(--main-color);
+    border-top-right-radius: 0.35vmin;
+    box-shadow: 
+    -0.1vmin 0.1vmin var(--secondary-color),
+    -0.25vmin 0.25vmin var(--main-color);
+    left: -2.25vmin;
+    top: 0.7vmin;
+ }
+
+ .sidebar > .manageProfile > li:nth-child(4)::after {
+    content: "";
+    position: absolute;
+    border-top: 0.25vmin solid var(--secondary-color);
+    border-right: 0.25vmin solid transparent;
+    border-left: 0.25vmin solid transparent;
+    background-color: transparent;
+    left: -1.5vmin;
+    top: 1vmin;
+    transform: rotate(45deg);
+ }
+
+/*right-side top header menu*/
+/**/
+.userMenu {
+    grid-area: usermenu;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    padding: 0 1vmin 0 1vmin;
+    box-shadow: 0vmin 0.5vmin 1vmin 0.25vmin var(--main-color);
+    z-index: 0;
+}
+
+.searchMenu {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    justify-items: center;
+    align-items: center;
+}
+
+.searchBar {
+    position: relative;
+    justify-self: stretch;
+    left: 5vmin
+}
+
+.searchBar::before {
+    content: "";
+    position: absolute;
+    left: -3vmin;
+    top: 0.6vmin;
+    height: 0.8vmin;
+    width: 0.8vmin;
+    border-radius: 50%;
+    border: 0.3vmin solid var(--main-color);
+    background-color: transparent;
+}
+
+.searchBar:hover::before {
+    cursor: pointer;
+    border: 0.4vmin solid var(--secondary-color);
+}
+
+.searchBar::after {
+    content: "";
+    position: absolute;
+    height: 0.3vmin;
+    width: 0.9vmin;
+    left: -2vmin;
+    top: 2vmin;
+    background: var(--main-color);
+    transform: rotate(45deg);
+}
+
+.searchBar:hover::after {
+    cursor: pointer;
+    height: 0.35vmin;
+    width: 0.95vmin;
+    background: var(--secondary-color);
+}
+
+#lookup {
+    appearance: none;
+    width: 90%;
+    height: 3vmin;
+    border-radius: 1vmin;
+    box-shadow: 0vmin 0.1vmin 0.5vmin 0.1vmin rgba(109,0,25,0.5) inset;
+}
+
+#lookup:hover {
+    box-shadow: 0vmin 0.1vmin 0.5vmin 0.1vmin var(--secondary-color) inset;
+}
+
+.notifications {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    align-items: center;
+    margin: 0;
+    padding: 0 2vmin 0 0;
+}
+
+/*the following creates a notification bell icon and animates it upon hovering*/
+.notifications > li:nth-child(1) {
+    padding: 0.5vmin;
+    position: relative;
+    height: 0.75vmin;
+    width: 0.75vmin;
+    border-radius: 50%;
+    background-color: var(--main-color);
+    top: -0.5vmin;
+    left: 3vmin;
+    cursor: pointer;
+}
+
+.notifications > li:nth-child(1):active {
+    animation-name: ring;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes ring {
+    0% {transform: rotate(-45deg);}
+    25% {transform: rotate(45deg);}
+    50% {transform: rotate(-45deg);}
+    75% {transform: rotate(45deg);}
+    100% {transform: rotate(-45deg);}
+}
+
+
+.notifications > li:nth-child(1)::before {
+    content: "";
+    position: absolute;
+    height: 1vmin;
+    width: 0.75vmin;
+    border-radius: 50%;
+    background-color: var(--main-color);
+    top: 1.3vmin;
+    left: -0.05vmin;
+    transform: rotate(180deg);
+}
+
+.notifications > li:nth-child(1):hover::before {
+    animation-name: bell;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes bell {
+    0% {right: 0.25vmin;}
+    25% {left: 0.25vmin;}
+    50% {right: 0.25vmin;}
+    75% {left: 0.25vmin;}
+    100% {right: 0.25vmin;}
+}
+
+.notifications > li:nth-child(1)::after {
+    content: "";
+    color: var(--secondary-color);
+    font-family: Times;
+    text-shadow: none;
+    text-align: center;
+    font-size: 1vmin;
+    position: absolute;
+    height: 0.65vmin;
+    width: 1.5vmin;
+    left: -0.25vmin;
+    top: 0.3vmin;
+    background-color: var(--main-color);
+    border-bottom: 0.75vmin solid var(--main-color);
+    border-radius: 50% 50% 50% 50% / 12% 12% 88% 88%;
+    transform: rotate(180deg);
+    box-shadow: 
+    0vmin -0.15vmin var(--secondary-color),
+    0vmin -0.25vmin white;
+}
+
+.notifications > li:nth-child(2) {
+    width: 5vmin;
+    height: 5vmin;
+    border-radius: 50%;
+    border: 0.25vmin solid var(--secondary-color);
+    cursor: pointer;
+}
+
+.notifications > li:nth-child(2):hover {
+    border: 0.35vmin solid var(--main-color);
+}
+
+.notifications > li > h3 {
+    font-family: '8bit';
+    font-size: 2vmin;
+    cursor: pointer;
+}
+
+.notifications > li > h3:hover {
+    color: white;
+    text-shadow:
+    -1px -1px 0 var(--main-color),  
+    1px -1px 0 var(--main-color),
+    -1px 1px 0 var(--main-color),
+    1px 1px 0 var(--main-color);
+}
+
+.activityMenu {
+    margin-bottom: 1.5vmin;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: center;
+}
+
+.profile {
+    margin: 0;
+    padding: 0vmin 0vmin 0vmin 4vmin;
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 8fr;
+    justify-items: start;
+    align-items: center;
+}
+
+.profilePic {
+    width: 7vmin;
+    height: 7vmin;
+    border-radius: 50%;
+    border: 0.25vmin solid var(--secondary-color);
+    cursor: pointer;
+}
+
+.profilePic:hover {
+    border: 0.45vmin solid var(--main-color);
+}
+
+.user {
+    font-family: '8bit';
+}
+
+.user > p {
+    font-size: 1.5vmin;
+    margin: 0;
+}
+
+.username {
+    font-size: 2.5vmin;
+    margin: 0;
+}
+
+.activity {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+}
+
+.activity > li > button {
+    appearance: none;
+    font-family: '8bit';
+    color: white;
+    font-size: 2.5vmin;
+    width: 9vmin;
+    height: 4vmin;
+    background-color: var(--secondary-color);
+    border-radius: 1vmin;
+    border: 0.25vmin solid var(--main-color);
+    text-shadow:
+    -1px -1px 0 var(--main-color),  
+    1px -1px 0 var(--main-color),
+    -1px 1px 0 var(--main-color),
+    1px 1px 0 var(--main-color);
+    cursor: pointer;
+}
+
+.activity > li > button:hover {
+    background-color: var(--main-color);
+    border-radius: 1vmin;
+    border: 0.25vmin solid var(--secondary-color);
+    text-shadow:
+    -1px -1px 0 var(--secondary-color),  
+    1px -1px 0 var(--secondary-color),
+    -1px 1px 0 var(--secondary-color),
+    1px 1px 0 var(--secondary-color);
+    box-shadow: 0.25vmin 0.25vmin 1vmin var(--main-color);
+}
+
+/*right-side main activity dashboard*/
+.dashboardBackground {
+    background-image: url('images/banner\ copy.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-clip: content-box;
+}
+
+.activityDashboard {
+    box-shadow: 
+    0 1vmin 35vmin rgba(0, 0, 0, 0.6) inset,
+    -7.5vmin 0 45vmin 7.5vmin rgba(0, 0, 0, 0.7) inset,
+    1vmin 0 10vmin rgba(0, 0, 0, 0.6) inset;
+    height: 83vh;
+    width: 100%;
+    grid-area: activityDash;
+    gap: 1.5vmin;
+    padding: 3vmin 3vmin 0vmin 3vmin; 
+    overflow: auto;
+}
+
+.sectionTitle {
+    margin: 0;
+    padding: 0 0 0.5vmin 0;
+    font-family: '8bit';
+    font-size: 3vmin;
+    color: white;
+    text-shadow:
+    -1px -1px 0 var(--main-color),  
+    1px -1px 0 var(--main-color),
+    -1px 1px 0 var(--main-color),
+    1px 1px 0 var(--main-color);
+    overflow: scroll;
+}
+
+.activityDiv1 {
+    grid-area: projects;
+}
+
+/*project class is associated with posts (decided theme of page after creating layout, else the class would be posts)*/
+.projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5vmin;
+}
+
+/*a blur filter is used to create a frosted glass effect as the background to each div, upon hovering the glass somewhat clears up*/
+.projects > div {
+    display: grid;
+    grid-template-rows: 1.5fr 4fr 1fr;
+    position: relative;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(0.75vmin);
+    -webkit-backdrop-filter: blur(0.75vmin);
+    border-radius: 1vmin;
+    padding: 1vmin 1.5vmin 1vmin 1vmin;
+    box-shadow: 
+    0 1vmin 7vmin rgba(0, 0, 0, 0.25) inset,
+    0.35vmin 0 var(--secondary-color) inset,
+    0.25vmin 0.25vmin 0.5vmin var(--main-color);
+    font-family: '8bit';
+    color: white;
+    text-shadow:
+    -1px -1px 0 var(--main-color),  
+    1px -1px 0 var(--main-color),
+    -1px 1px 0 var(--main-color),
+    1px 1px 0 var(--main-color);
+    transition: all 1s ease;
+    -webkit-transition: all 1s ease;
+}
+
+.projects > div:hover {
+    backdrop-filter: blur(0.25vmin);
+    -webkit-backdrop-filter: blur(0.25vmin);
+    box-shadow: 
+    0 1vmin 7vmin rgba(0, 0, 0, 0.25) inset,
+    0.15vmin 0 var(--secondary-color) inset,
+    1vmin 1vmin 1vmin var(--main-color);
+    transition: all 1s ease;
+    -webkit-transition: all 1s ease;
+}
+
+.task {
+    font-size: 2.25vmin;
+    margin: 1vmin 0 0 0;
+    padding-left: 1vmin;
+}
+
+.projects > div > p {
+    font-size: 2vmin;
+    margin-top: 0;
+    padding-left: 1vmin;
+}
+
+.projects > div > ul {
+    position: relative;
+    list-style: none;
+    display: flex;
+    height: 3vmin;
+    width: 80%;
+    margin: 0;
+    padding: 0;
+    justify-content: flex-end;
+    gap: 5vmin;
+}
+
+.projects > div > ul > li {
+    user-select: none;
+    cursor: pointer;
+}
+
+.completed {
+    position: relative;
+    color: var(--secondary-color);
+    width: 0px;
+    height: 0px;
+    border-right: 1vmin solid transparent;
+    border-bottom: 0.7vmin solid var(--secondary-color);
+    border-left: 1vmin solid transparent;
+    transform: rotate(35deg);
+    opacity: 0.5;
+}
+
+.completed:hover {
+    opacity: 0.75;
+}
+
+.completed:active {
+    opacity: 1;
+}
+
+.completed::before {
+    content: '';
+    border-bottom: .8vmin solid var(--secondary-color);
+    border-left: .3vmin solid transparent;
+    border-right: .3vmin solid transparent;
+    position: absolute;
+    height: 0;
+    width: 0;
+    top: -0.45vmin;
+    left: -0.65vmin;
+    transform: rotate(-35deg);
+}
+
+.completed::after {
+    position: absolute;
+    color: var(--main-color);
+    top: .03vmin;
+    left: -1.05vmin;
+    width: 0;
+    height: 0;
+    border-right: 1vmin solid transparent;
+    border-bottom: 0.7vmin solid var(--secondary-color);
+    border-left: 1vmin solid transparent;
+    transform: rotate(-70deg);
+    font-family: Times;
+    content: "";
+}
+
+.trash {
+    position: relative;
+    font-size: 3vmin;
+    bottom: 1.25vmin;
+    opacity: 0.5;
+}
+
+.trash:hover {
+    opacity: 0.75;
+}
+
+.trash:active {
+    opacity: 1;
+}
+
+/*Date input styles borrowed from Ageir Hoem on codepen.io, modified to suit style of page*/
+input[type="date"] {
+    display:block;
+    position:relative;
+    bottom: 1.5vmin;
+    padding:0.75vmin 3.5vmin 0.75vmin 0.5vmin;
+    font-size: 1.75vmin;
+    font-family: '8bit', 'Courier New', Courier, monospace;
+    color: white;
+    text-shadow:
+    -1px -1px 0 var(--main-color),  
+    1px -1px 0 var(--main-color),
+    -1px 1px 0 var(--main-color),
+    1px 1px 0 var(--main-color);
+    border:1px solid var(--secondary-color);
+    border-radius: 0.25vmin;
+    background-color: rgba(255, 255, 255, 0.5);
+    background-image: url(./images/clock.svg);
+    background-size: 15%;
+    background-position: right .5vmin center;
+    background-repeat: no-repeat;
+    cursor:pointer;
+}
+
+input[type="date"]:focus {
+    outline:none;
+    border-color:var(--main-color);
+    box-shadow:0 0 0 0.2vmin var(--secondary-color);
+}
+
+::-webkit-datetime-edit-month-field:hover,
+::-webkit-datetime-edit-day-field:hover,
+::-webkit-datetime-edit-year-field:hover {
+    background:rgba(0, 120, 250, 0.1);
+  }
+
+::-webkit-datetime-edit-text {
+    opacity:0;
+}
+
+::-webkit-clear-button,
+::-webkit-inner-spin-button {
+    display:none;
+}
+
+::-webkit-calendar-picker-indicator {
+    position:absolute;
+    width:2.5vmin;
+    height:100%;
+    top:0;
+    right:0;
+    bottom:0;
+    
+    opacity:0;
+    cursor:pointer;
+    
+    color:rgba(0, 120, 250, 1);
+    background:rgba(0, 120, 250, 1);
+   
+}
+  
+input[type="date"]:hover::-webkit-calendar-picker-indicator { opacity:0.05; }
+input[type="date"]:hover::-webkit-calendar-picker-indicator:hover { opacity:0.15; }
+  
