@@ -40,7 +40,7 @@
                     </li>
                 </ul>
                 <ul class="activity">
-                    <li><button>New</button></li>
+                    <li><button class="newTaskButton">New</button></li>
                     <li><button>Upload</button></li>
                 </ul>
             </div>
@@ -50,7 +50,7 @@
                 <div class="activityDiv1">
                     <h3 class="sectionTitle">Home</h3>
                     <div class="projects">
-                        <div>
+                        <div class="taskListItem">
                             <h4 class="task">Welcome to Facebok Task Manager</h4>
                             <p class="notes">Click the new button on the top dashboard to get started. Manage your daily and weekly tasks, create projects, and customize the background and a profile pic to your liking.</p>
                             <ul class="manageTask">
@@ -68,12 +68,10 @@
         <label for="todoTitle">Task:</label><br>
         <input type="text" id="todoTitle" name="title" required><br>
         <label for="todoNotes">Notes:</label><br>
-        <textarea id="todoNotes" name="notes" rows = "4" cols = "50">
-            Enter Task Details...
-        </textarea><br>
+        <textarea id="todoNotes" name="notes" rows = "4" cols = "50" placeholder="Enter Task Details..." required></textarea><br>
         <label for="dateDue">Due Date:</label><br>
         <input type="date" id="dateDue" name="dateDue" required><br>
-        <label for="todoProject">Add to a project?</label><br>
+        <label for="todoProject">Create or Add to Project?</label><br>
         <input type="text" id="todoProject" name="todoProject"><br>
         <label for="remindMe">Remind 24hrs in Advance?</label><br>
         <input type="checkbox" id="remindMe" name="remindMe"><br>
