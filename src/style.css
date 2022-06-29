@@ -650,7 +650,7 @@ li > img {
     padding-left: 1vmin;
 }
 
-.projects > div > ul {
+.manageTask {
     position: relative;
     list-style: none;
     display: flex;
@@ -662,7 +662,7 @@ li > img {
     gap: 5vmin;
 }
 
-.projects > div > ul > li {
+.manageTask > li {
     user-select: none;
     cursor: pointer;
 }
@@ -731,7 +731,7 @@ li > img {
 }
 
 /*Date input styles borrowed from Ageir Hoem on codepen.io, modified to suit style of page*/
-input[type="date"] {
+li > input[type="date"] {
     display:block;
     position:relative;
     bottom: 1.5vmin;
@@ -793,4 +793,102 @@ input[type="date"]:focus {
   
 input[type="date"]:hover::-webkit-calendar-picker-indicator { opacity:0.05; }
 input[type="date"]:hover::-webkit-calendar-picker-indicator:hover { opacity:0.15; }
+
+
+
+/*Form*/
+#todoSubmit {
+    font-family: '8bit', 'Courier New', Courier, monospace;
+    font-size: 2vmin;
+    background: linear-gradient(135deg, 
+    rgba(179,220,237,0.25) 0%,
+    rgba(41,184,229,0.45) 50%,
+    rgba(188,224,238,0.65) 100%); 
+    border-radius: 1vmin;
+    box-shadow: 0 4vmin 50vmin 100vmin rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5.9px);
+    border: 0.3vmin solid white;
+    display: none;
+    position: absolute;
+    padding: 2vmin 2vmin 1vmin 2vmin;
+    z-index: 1;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, 0);
+    width: fit-content;
+    text-align: center;
+    color: white;
+    text-shadow:
+   -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+     1px 1px 0 #000;
+     z-index: 10;
+}
+
+#todoSubmit:hover {
+    background: linear-gradient(135deg, 
+    rgba(179,220,237,0.45) 0%,
+    rgba(41,184,229,0.65) 50%,
+    rgba(188,224,238,0.85) 100%); 
+}
+
+#todoTitle,
+#todoNotes,
+#dateDue,
+#todoProject,
+#remindMe,
+#priorityList {
+    width: 100%;
+    padding: 0.25vmin 1vmin 0.25vmin 1vmin;
+}
+
+textarea,
+input {
+    border-radius: 1vmin;
+    border: 0.3vmin solid black;
+}
+
+textarea:hover,
+input:hover {
+    box-shadow: inset 0 0.2vmin 0.3vmin black;
+}
+
+#remindMe {
+    cursor: pointer;
+    width: 2vmin;
+    height: 2vmin;
+}
+
+#todoTitle,
+#todoNotes,
+#dateDue,
+#todoProject,
+#remindMe,
+#priorityList {
+    margin-bottom: 1vmin;
+}
+
+#dateDue {
+    display:block;
+    position:relative;
+    top: 1vmin;
+    padding:0.75vmin 3.5vmin 0.75vmin 0.5vmin;
+    font-size: 1.75vmin;
+    font-family: '8bit', 'Courier New', Courier, monospace;
+    color: white;
+    text-shadow:
+    -1px -1px 0 var(--main-color),  
+    1px -1px 0 var(--main-color),
+    -1px 1px 0 var(--main-color),
+    1px 1px 0 var(--main-color);
+    border:1px solid var(--secondary-color);
+    border-radius: 0.25vmin;
+    background-color: rgba(255, 255, 255, 0.5);
+    background-image: url(./images/clock.svg);
+    background-size: 5%;
+    background-position: right .5vmin center;
+    background-repeat: no-repeat;
+    cursor:pointer;
+}
   

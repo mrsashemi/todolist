@@ -53,7 +53,7 @@
                         <div>
                             <h4 class="task">Welcome to Facebok Task Manager</h4>
                             <p class="notes">Click the new button on the top dashboard to get started. Manage your daily and weekly tasks, create projects, and customize the background and a profile pic to your liking.</p>
-                            <ul>
+                            <ul class="manageTask">
                                 <li class="completed"></li>
                                 <li class="date"><input type="date"></li>
                                 <li class="trash">X</li>
@@ -64,6 +64,29 @@
             </div>
         </div>
     </div>
+    <form id="todoSubmit" action="" method="post">
+        <label for="todoTitle">Task:</label><br>
+        <input type="text" id="todoTitle" name="title" required><br>
+        <label for="todoNotes">Notes:</label><br>
+        <textarea id="todoNotes" name="notes" rows = "4" cols = "50">
+            Enter Task Details...
+        </textarea><br>
+        <label for="dateDue">Due Date:</label><br>
+        <input type="date" id="dateDue" name="dateDue" required><br>
+        <label for="todoProject">Add to a project?</label><br>
+        <input type="text" id="todoProject" name="todoProject"><br>
+        <label for="remindMe">Remind 24hrs in Advance?</label><br>
+        <input type="checkbox" id="remindMe" name="remindMe"><br>
+        <label for="priorityList">What is the priority?</label><br>
+        <input list="priorityList"><br>
+        <datalist id="priorityList">
+            <option value="High">
+            <option value="Medium">
+            <option value="Low">
+        </datalist><br>
+        <button type="submit" id="formSubmitButton">Submit</button><br><br>
+        <footer>Saved tasks will be stored locally</footer>
+    </form>
     <script src="bundle.js"></script>
 </body>
 </html>
