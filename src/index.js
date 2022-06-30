@@ -17,13 +17,23 @@ function saveToLocalStorage() {
 }
 
 /*Retrieve localstorage*/
-const str = localStorage.getItem('Tasks');
-let storedTaskArray = JSON.parse(str);
+function renderDashboard() {
+    const str = localStorage.getItem('Tasks');
+    let storedTaskArray = JSON.parse(str);
 
-if (str != null) {
-    /*Use spread operator to add the stored array to the myLibrary array*/
-    myToDoList.push(...storedTaskArray);
-}
+    if (str != null) {
+        /*Use spread operator to add the stored array to the myToDoList array*/
+        myToDoList.push(...storedTaskArray);
+    }
+
+    if (myToDoList.length !== 0) {
+        removeChildren();
+        addTaskToDashboard(myToDoList);
+        deleteFromDashboard();
+    }
+};
+ renderDashboard();
+
 
 //Create a factory function that generates todo objects
 const toDo = function(listnum, title, notes, date, project, completed, remind, priority ) {
@@ -62,7 +72,7 @@ function addTaskToDoListArray() {
     /*save to local storage*/
     saveToLocalStorage();
     /*activate delete and toggle functions upon submitting book form*/
-    deleteFromLibrary();
+    deleteFromDashboard();
     toggleCompleted();
 };
 
@@ -90,6 +100,12 @@ function addTaskToDashboard(arr) {
         taskManagement.className = "manageTask";
         todoTask.appendChild(taskManagement);
 
+        let listNumber = document.createElement('li');
+        listNumber.className = "listNum";
+        listNumber.style.display = "none";
+        listNumber.textContent = element.listNum;
+        taskManagement.appendChild(listNumber);
+
         let completeCheck = document.createElement('li');
         completeCheck.className = "completed";
         let dateCheck = document.createElement('li');
@@ -103,6 +119,7 @@ function addTaskToDashboard(arr) {
 
         let dateInput = document.createElement('input');
         dateInput.type = "date";
+        dateInput.value = element.date;
         dateCheck.appendChild(dateInput);
     });
 };
@@ -131,8 +148,6 @@ function preventFormDefault() {
         e.preventDefault();
         addTaskToDoListArray();
     });
-
-    console.log(myToDoList);
 };
 
 preventFormDefault();
@@ -156,7 +171,7 @@ function resetFormValues() {
 };
 
 /*Create a function to remove object from array and from document upon clicking delete button*/
-function deleteFromLibrary() {
+function deleteFromDashboard() {
     let deleteButton = document.querySelectorAll('.trash');
     deleteButton.forEach(element => {
         element.addEventListener('click', () => {
@@ -164,10 +179,10 @@ function deleteFromLibrary() {
             myToDoList.splice(Number(x), 1);
 
             myToDoList.forEach(e => {
-                e.listNum = myLibrary.indexOf(e);
+                e.listNum = myToDoList.indexOf(e);
             });
 
-            element.parentElement.remove();
+            element.parentElement.parentElement.remove();
             saveToLocalStorage();
         });
     });
@@ -175,21 +190,20 @@ function deleteFromLibrary() {
 
 /*Create a function to toggle between Completed and Not Completed on the task object*/
 function toggleCompleted() {
-    let taskListItem = document.querySelectorAll('.taskListItem');
+    let taskListItem = document.querySelectorAll('.completed');
     taskListItem.forEach(element => {
-        let completeToggle = document.querySelector('.completed');
-        let taskTitle = document.querySelector('.task')
-        (completeToggle.style.opacity == "1") ? taskTitle.style['text-decoration'] = 'line-through' : taskTitle.style['text-decoration'] = 'none';
+        let taskTitle = document.querySelectorAll('.task');
 
-        completeToggle.addEventListener('click', () => {
-            (completeToggle.style.opacity == "1") ? completeToggle.style.opacity = "0.5" : completeToggle.style.opacity = "1";
-            (completeToggle.style.opacity == "1") ? taskTitle.style['text-decoration'] = 'line-through' : taskTitle.style['text-decoration'] = 'none';
-            //let x = readToggle.parentElement.firstChild.textContent;
-            //myLibrary[Number(x)].read = readToggle.textContent;
-           // saveToLocalStorage();
-        }) 
-    })
-}
+        element.addEventListener('click', () => {
+            (element.style.opacity == "1") ? element.style.opacity = "0.5" : element.style.opacity = "1";
+            (element.style.opacity == "1") ? element.parentElement.parentElement.firstChild.style['text-decoration'] = 'line-through' : element.parentElement.parentElement.firstChild.style['text-decoration'] = 'none';
+
+            let x = element.parentElement.firstChild.textContent;
+            myToDoList[Number(x)].completed = true;
+           saveToLocalStorage();
+        }); 
+    });
+};
 
 toggleCompleted();
 
