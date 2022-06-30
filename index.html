@@ -58,6 +58,7 @@
                             <ul class="manageTask">
                                 <li class="completed"></li>
                                 <li class="date"><input type="date" class="dateInput"></li>
+                                <li class="priority">none</li>
                                 <li class="trash">X</li>
                             </ul>
                         </div>
@@ -78,12 +79,11 @@
         <label for="remindMe">Remind 24hrs in Advance?</label><br>
         <input type="checkbox" id="remindMe" name="remindMe"><br>
         <label for="priorityList">What is the priority?</label><br>
-        <input list="priorityList"><br>
-        <datalist id="priorityList">
-            <option value="High">
-            <option value="Medium">
-            <option value="Low">
-        </datalist><br>
+        <select id="priorityList" name="priorityList">
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+        </select><br><br>
         <button type="submit" id="formSubmitButton">Submit</button><br><br>
         <footer>Saved tasks will be stored locally</footer>
     </form>
