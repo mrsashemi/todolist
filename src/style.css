@@ -597,8 +597,8 @@ li > img {
 
 /*project class is associated with posts (decided theme of page after creating layout, else the class would be posts)*/
 .projects {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    display: flex;
+    flex-direction: column;
     gap: 1.5vmin;
 }
 
