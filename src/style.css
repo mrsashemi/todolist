@@ -715,6 +715,19 @@ li > img {
     content: "";
 }
 
+.priority {
+    position: relative;
+    font-size: 2vmin;
+    bottom: 1vmin;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 0.25vmin 0.5vmin 0.25vmin 0.5vmin;
+    border-radius: 1vmin;
+}
+
+.priority:hover {
+    background-color: var(--secondary-color);
+}
+
 .trash {
     position: relative;
     font-size: 3vmin;
@@ -796,7 +809,7 @@ input[type="date"]:hover::-webkit-calendar-picker-indicator:hover { opacity:0.15
 
 
 
-/*Form*/
+/*Form Styles*/
 #todoSubmit {
     font-family: '8bit', 'Courier New', Courier, monospace;
     font-size: 2vmin;

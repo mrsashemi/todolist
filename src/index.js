@@ -10,18 +10,18 @@ const taskForm = document.querySelector("#todoSubmit");
 //Create a to-do list array to hold the todo objects
 let myToDoList = [];
 
-/*Create a function that saves the array to localstorage*/
+//Create a function that saves the array to localstorage
 function saveToLocalStorage() {
     localStorage.setItem('Tasks', JSON.stringify(myToDoList))
 }
 
-/*Retrieve localstorage*/
+//Retrieve localstorage
 function renderDashboard() {
     const str = localStorage.getItem('Tasks');
     let storedTaskArray = JSON.parse(str);
 
     if (str != null) {
-        /*Use spread operator to add the stored array to the myToDoList array*/
+        //Use spread operator to add the stored array to the myToDoList array
         myToDoList.push(...storedTaskArray);
     }
 
@@ -31,7 +31,8 @@ function renderDashboard() {
         deleteFromDashboard();
     }
 };
- renderDashboard();
+
+renderDashboard();
 
 
 //Create a factory function that generates todo objects
@@ -48,12 +49,12 @@ const toDo = function(listnum, title, notes, date, project, completed, remind, p
     };
 };
 
-/*Create a function that adds an object to the array upon submitting form*/
+//Create a function that adds an object to the array upon submitting form
 function addTaskToDoListArray() {
-    /*Reset document grid*/
+    //Reset document grid
     removeChildren();
     
-    /*declare values and construct new object to be added to myToDoList Array*/
+    //declare values and construct new object to be added to myToDoList Array
     let listNum = myToDoList.length;
     let title = document.querySelector("#todoTitle").value;
     let notes = document.querySelector("#todoNotes").value;
@@ -66,20 +67,23 @@ function addTaskToDoListArray() {
     myToDoList.push(TaskItem);
     addTaskToDashboard(myToDoList);
 
-    /*reset form*/
+    //reset form
     resetFormValues();
-    /*save to local storage*/
+    //save to local storage
     saveToLocalStorage();
-    /*activate delete and toggle functions upon submitting todo form */
+    //activate delete and toggle functions upon submitting todo form
     deleteFromDashboard();
     toggleCompleted();
     editDate();
+    adjustPriority();
 };
 
 
 
-/*Create a function that iterates through the array holding the objects.
-For each object in the array, create and append an element to the parent in the document.*/
+
+
+//Create a function that iterates through the array holding the objects.
+//For each object in the array, create and append an element to the parent in the document.
 function addTaskToDashboard(arr) {
     arr.forEach(element => {
         let todoTask = document.createElement('div');
@@ -102,7 +106,6 @@ function addTaskToDashboard(arr) {
 
         let listNumber = document.createElement('li');
         listNumber.className = "listNum";
-        listNumber.style.display = "none";
         listNumber.textContent = element.listNum;
         taskManagement.appendChild(listNumber);
 
@@ -110,11 +113,25 @@ function addTaskToDashboard(arr) {
         completeCheck.className = "completed";
         let dateCheck = document.createElement('li');
         dateCheck.className = "date";
+        let priorityCheck = document.createElement('li');
+        priorityCheck.textContent = element.priority;
+
+        if (priorityCheck.textContent == "High") {
+            priorityCheck.style["background-color"] = "rgba(255, 0, 0, 0.5)";
+        } else if (priorityCheck.textContent == "Medium") {
+            priorityCheck.style["background-color"] = "rgba(255, 255, 0, 0.5)"
+        } else if (priorityCheck.textContent == "Low") {
+            priorityCheck.style["background-color"] = "rgba(0, 128, 0, 0.5)"
+        }
+
+        priorityCheck.className = "priority";
         let trashButton = document.createElement('li');
         trashButton.textContent = "X";
         trashButton.className = "trash";
+
         taskManagement.appendChild(completeCheck);
         taskManagement.appendChild(dateCheck);
+        taskManagement.appendChild(priorityCheck);
         taskManagement.appendChild(trashButton);
 
         let dateInput = document.createElement('input');
@@ -124,7 +141,7 @@ function addTaskToDashboard(arr) {
     });
 };
 
-/*Create a function that displays and closes a pop-up form*/
+//Create a function that displays and closes a pop-up form
 function displayTaskForm() {
     newTaskButton.addEventListener('click', () => {
             taskForm.style.display = "block";
@@ -142,7 +159,7 @@ function displayTaskForm() {
 
 displayTaskForm();
 
-/*Create function that submits the form and prevents default refreshing page */
+//Create function that submits the form and prevents default refreshing page
 function preventFormDefault() {
     taskForm.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -152,14 +169,14 @@ function preventFormDefault() {
 
 preventFormDefault();
 
-/*Create a function to refresh the document grid containing book objects from the array*/
+//Create a function to refresh the document grid containing book objects from the array*/
 function removeChildren() {
     while (projects.firstChild) {
         projects.removeChild(projects.firstChild);
     };
 };
 
-/*Create a function to reset form values*/
+//Create a function to reset form values
 function resetFormValues() {
     taskForm.style.display = "none";
     document.querySelector("#todoTitle").value = '';
@@ -170,7 +187,7 @@ function resetFormValues() {
     document.querySelector('#priorityList').value = '';
 };
 
-/*Create a function to remove object from array and from document upon clicking delete button*/
+//Create a function to remove object from array and from document upon clicking delete button
 function deleteFromDashboard() {
     let deleteButton = document.querySelectorAll('.trash');
     deleteButton.forEach(element => {
@@ -188,7 +205,7 @@ function deleteFromDashboard() {
     });
 };
 
-/*Create a function to toggle between Completed and Not Completed on the task object*/
+//Create a function to toggle between Completed and Not Completed on the task object
 function toggleCompleted() {
     let taskListItem = document.querySelectorAll('.completed');
     taskListItem.forEach(element => {
@@ -219,3 +236,41 @@ function editDate() {
 
 editDate();
 
+//Create a function that adjusts the priority level
+function adjustPriority() {
+    let taskPriority = document.querySelectorAll('.priority');
+    taskPriority.forEach(element => {
+        element.addEventListener("mouseover", () =>{
+            element.style["background-color"] = "rgba(255,168,76,1)";
+        })
+
+        element.addEventListener("mouseout", () => {
+            if (element.textContent == "High") {
+                element.style["background-color"] = "rgba(255, 0, 0, 0.5)";
+            } else if (element.textContent == "Medium") {
+                element.style["background-color"] = "rgba(255, 255, 0, 0.5)"
+            } else if (element.textContent == "Low") {
+                element.style["background-color"] = "rgba(0, 128, 0, 0.5)"
+            }
+        })
+
+        element.addEventListener("click", () => {
+            if (element.textContent == "High") {
+                element.textContent = "Medium"
+                element.style["background-color"] = "rgba(255, 255, 0, 0.5)"
+            } else if (element.textContent == "Medium") {
+                element.textContent = "Low" 
+                element.style["background-color"] = "rgba(0, 128, 0, 0.5)"
+            } else if (element.textContent == "Low") {
+                element.textContent = "High"
+                element.style["background-color"] = "rgba(255, 0, 0, 0.5)";
+            }
+
+            let x = element.parentElement.firstChild.textContent;
+            myToDoList[Number(x)].priority = element.textContent;
+            saveToLocalStorage();
+        })
+    })
+}
+
+adjustPriority();
