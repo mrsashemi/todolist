@@ -53,9 +53,11 @@ const toDo = function(listnum, title, notes, date, project, completed, remind, p
 function addTaskToDoListArray() {
     //Reset document grid
     removeChildren();
+
+    let index = myToDoList.length;
     
     //declare values and construct new object to be added to myToDoList Array
-    let listNum = myToDoList.length;
+    let listNum = index;
     let title = document.querySelector("#todoTitle").value;
     let notes = document.querySelector("#todoNotes").value;
     let date = document.querySelector("#dateDue").value;
@@ -106,11 +108,18 @@ function addTaskToDashboard(arr) {
 
         let listNumber = document.createElement('li');
         listNumber.className = "listNum";
-        listNumber.textContent = element.listNum;
-        taskManagement.appendChild(listNumber);
+        listNumber.style["font-size"] = "2vmin";
+        listNumber.textContent = arr.indexOf(element);
 
         let completeCheck = document.createElement('li');
         completeCheck.className = "completed";
+
+        if (element.completed == true) {
+            completeCheck.style.opacity = 1;
+        } else if (element.completed == false) {
+            completeCheck.style.opacity = 0.5;
+        }
+
         let dateCheck = document.createElement('li');
         dateCheck.className = "date";
         let priorityCheck = document.createElement('li');
@@ -129,6 +138,7 @@ function addTaskToDashboard(arr) {
         trashButton.textContent = "X";
         trashButton.className = "trash";
 
+        taskManagement.appendChild(listNumber);
         taskManagement.appendChild(completeCheck);
         taskManagement.appendChild(dateCheck);
         taskManagement.appendChild(priorityCheck);
@@ -197,10 +207,14 @@ function deleteFromDashboard() {
 
             myToDoList.forEach(e => {
                 e.listNum = myToDoList.indexOf(e);
+                console.log(e.listNum)
             });
 
             element.parentElement.parentElement.remove();
+            removeChildren();
+            addTaskToDashboard(myToDoList);
             saveToLocalStorage();
+            deleteFromDashboard();
         });
     });
 };
@@ -209,12 +223,13 @@ function deleteFromDashboard() {
 function toggleCompleted() {
     let taskListItem = document.querySelectorAll('.completed');
     taskListItem.forEach(element => {
+        (element.style.opacity == "1") ? element.parentElement.parentElement.firstChild.style['text-decoration'] = 'line-through' : element.parentElement.parentElement.firstChild.style['text-decoration'] = 'none';
         element.addEventListener('click', () => {
             (element.style.opacity == "1") ? element.style.opacity = "0.5" : element.style.opacity = "1";
             (element.style.opacity == "1") ? element.parentElement.parentElement.firstChild.style['text-decoration'] = 'line-through' : element.parentElement.parentElement.firstChild.style['text-decoration'] = 'none';
 
             let x = element.parentElement.firstChild.textContent;
-            myToDoList[Number(x)].completed = true;
+            myToDoList[Number(x)].completed = (element.style.opacity == "1") ? true : false;
            saveToLocalStorage();
         }); 
     });
