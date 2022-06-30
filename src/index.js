@@ -1,10 +1,9 @@
 import './style.css'
 
-
+//Cache DOM
 const projects = document.querySelector(".projects");
 const newTaskButton = document.querySelector(".newTaskButton");
 const taskForm = document.querySelector("#todoSubmit");
-const submitButton = document.querySelector("#formSubmitButton");
 
 
 
@@ -71,9 +70,10 @@ function addTaskToDoListArray() {
     resetFormValues();
     /*save to local storage*/
     saveToLocalStorage();
-    /*activate delete and toggle functions upon submitting book form*/
+    /*activate delete and toggle functions upon submitting todo form */
     deleteFromDashboard();
     toggleCompleted();
+    editDate();
 };
 
 
@@ -192,8 +192,6 @@ function deleteFromDashboard() {
 function toggleCompleted() {
     let taskListItem = document.querySelectorAll('.completed');
     taskListItem.forEach(element => {
-        let taskTitle = document.querySelectorAll('.task');
-
         element.addEventListener('click', () => {
             (element.style.opacity == "1") ? element.style.opacity = "0.5" : element.style.opacity = "1";
             (element.style.opacity == "1") ? element.parentElement.parentElement.firstChild.style['text-decoration'] = 'line-through' : element.parentElement.parentElement.firstChild.style['text-decoration'] = 'none';
@@ -206,4 +204,18 @@ function toggleCompleted() {
 };
 
 toggleCompleted();
+
+//Create a function that adjusts the task date in the todo list object array
+function editDate() {
+    let taskDate = document.querySelectorAll('.date');
+    taskDate.forEach(element => {
+       element.firstChild.addEventListener("change", () => {
+        let x = element.parentElement.firstChild.textContent;
+        myToDoList[Number(x)].date = element.firstChild.value;
+        saveToLocalStorage();
+       });
+    });
+};
+
+editDate();
 
