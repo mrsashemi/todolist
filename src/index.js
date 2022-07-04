@@ -12,7 +12,7 @@ export function saveToLocalStorage() {
 }
 
 //Retrieve localstorage
-function renderDashboard() {
+export function renderDashboard() {
     const str = localStorage.getItem('Tasks');
     let storedTaskArray = JSON.parse(str);
 
@@ -21,19 +21,23 @@ function renderDashboard() {
         myToDoList.push(...storedTaskArray);
     }
 
-    if (myToDoList.length !== 0) {
+    render(myToDoList);
+};
+
+renderDashboard();
+
+//re-render as needed
+export function render(arr) {
+    if (arr.length !== 0) {
         removeChildren();
-        addTaskToDashboard(myToDoList);
+        addTaskToDashboard(arr);
         deleteFromDashboard();
         editDate();
         toggleCompleted();
         adjustPriority();
         keepSlashed();
     }
-};
-
-renderDashboard();
-
+}
 
 
 

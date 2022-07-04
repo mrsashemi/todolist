@@ -30,8 +30,6 @@ export function keepSlashed() {
 }
 
 
-
-
 //Create a function that adjusts the task date in the todo list object array
 export function editDate() {
     let taskDate = document.querySelectorAll('.date');

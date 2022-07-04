@@ -2,6 +2,7 @@ import { myToDoList, saveToLocalStorage } from "./index";
 import { deleteFromDashboard, removeChildren } from "./reset";
 import { toggleCompleted, editDate, adjustPriority } from "./toggle";
 import { resetFormValues } from "./forms";
+import { displayProjects, showToday, showWeek } from "./UI";
 
 //Create a factory function that generates todo objects
 const toDo = function(listnum, title, notes, date, project, completed, remind, priority ) {
@@ -37,15 +38,19 @@ export function addTaskToDoListArray() {
     myToDoList.push(TaskItem);
     addTaskToDashboard(myToDoList);
 
+
     //reset form
     resetFormValues();
     //save to local storage
     saveToLocalStorage();
-    //activate delete and toggle functions upon submitting todo form
+    //activate delete, toggle, and UI functions upon submitting todo form
     deleteFromDashboard();
     toggleCompleted();
     editDate();
     adjustPriority();
+    showToday();
+    showWeek();
+    displayProjects();
 };
 
 
@@ -77,8 +82,8 @@ export function addTaskToDashboard(arr) {
         todoTask.appendChild(taskManagement);
 
         let listNumber = document.createElement('li');
-        listNumber.className = "listNum";
-        listNumber.style["font-size"] = "2vmin";
+        listNumber.className = "listNum"; 
+        listNumber.style.display = 'none';
         listNumber.textContent = arr.indexOf(element);
 
         let completeCheck = document.createElement('li');
