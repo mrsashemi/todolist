@@ -12,7 +12,7 @@ export function showToday() {
     let today = format(new Date(), "yyyy-MM-dd");
 
     todayButton.addEventListener('click', () => {
-        let todayList = myToDoList.filter(element => element.date == today);
+        let todayList = myToDoList.filter(element => element.date === today);
         sectionTitle.textContent = "Today"
         render(todayList);
         displayHome();

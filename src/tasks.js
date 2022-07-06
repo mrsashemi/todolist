@@ -51,6 +51,7 @@ export function addTaskToDoListArray() {
     showToday();
     showWeek();
     displayProjects();
+    searchBar();
 };
 
 
