@@ -1,5 +1,6 @@
 import { myToDoList, render } from "./index";
 import { format, isThisWeek } from "date-fns";
+import { removeChildren } from "./reset";
 
 
 //Cache Dom
@@ -14,6 +15,7 @@ export function showToday() {
     todayButton.addEventListener('click', () => {
         let todayList = myToDoList.filter(element => element.date === today);
         sectionTitle.textContent = "Today"
+        removeChildren();
         render(todayList);
         displayHome();
         listProjects.style.display = 'none';
@@ -37,8 +39,8 @@ export function showWeek() {
                 weekList.push(myToDoList[i]);
             }
         }
-        console.log(weekList);
         sectionTitle.textContent = "Weekly"
+        removeChildren();
         render(weekList);
         displayHome();
         listProjects.style.display = 'none';
@@ -101,6 +103,7 @@ export function displayProjects() {
             button.addEventListener('click', () => {
                 let selectedProjectList = myToDoList.filter(element => element.project == button.textContent);
                 sectionTitle.textContent = button.textContent;
+                removeChildren();
                 render(selectedProjectList);
             })
         })

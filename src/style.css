@@ -386,9 +386,9 @@ li > img {
     cursor: pointer;
 }
 
-.notifications > li:nth-child(1):active {
+.notify:active {
     animation-name: ring;
-    animation-duration: 2s;
+    animation-duration: 0.5s;
     animation-iteration-count: infinite;
 }
 
@@ -904,4 +904,63 @@ input:hover {
     background-repeat: no-repeat;
     cursor:pointer;
 }
-  
+
+/*Notification Dropwdown*/
+
+.notifyPopUp {
+    font-family: '8bit', 'Courier New', Courier, monospace;
+    /* From https://css.glass */
+    background: rgba(255,168,76,0.5);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.8px);
+    -webkit-backdrop-filter: blur(5.8px);
+    border: 0.2vmin solid var(--main-color);
+    position: relative;
+    width: fit-content;
+    padding: 1vmin;
+    height: fit-content;
+    display: none;
+    right: 5vmin;
+    top: 2vmin;
+    overflow: hidden;
+    white-space: nowrap;
+    color: black;
+    text-shadow:
+    -1px -1px 0 white,  
+    1px -1px 0 white,
+    -1px 1px 0 white,
+    1px 1px 0 white;
+    font-size: 2vmin;
+    z-index: 20;
+}
+
+.displayNotifications {
+    padding: 0;
+    list-style-type: none;
+    color: white;
+    text-shadow:
+    -1px -1px 0 var(--main-color),  
+    1px -1px 0 var(--main-color),
+    -1px 1px 0 var(--main-color),
+    1px 1px 0 var(--main-color);
+}
+
+.displayNotifications > li:nth-child(1) {
+    margin-top: 1vmin;
+}
+
+.dueSoon {
+    font-size: 1.75vmin;
+    padding-left: 2vmin;
+    padding-right: 2vmin;
+}
+
+.dueSoon:hover {
+    /* From https://css.glass */
+    background: rgba(109,0,25,0.25);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.8px);
+    -webkit-backdrop-filter: blur(5.8px);
+}

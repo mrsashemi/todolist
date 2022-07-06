@@ -1,4 +1,5 @@
 import { myToDoList, render } from "./index";
+import { displayHome } from "./UI";
 
 //Create a function that enables task title searching
 export function searchBar() {
@@ -17,6 +18,7 @@ export function searchBar() {
             //Simulate a toggle feature by rendering the task array filtered for the input
             return (isVisible) ? render(myToDoList.filter(el => el.title.toUpperCase().includes(value))) : null;
         })
+        displayHome();
     })
 }
 

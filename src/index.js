@@ -3,6 +3,7 @@ import { removeChildren, deleteFromDashboard } from './reset';
 import { addTaskToDashboard } from './tasks';
 import { editDate, toggleCompleted, adjustPriority, keepSlashed } from './toggle';
 import { searchBar } from './search';
+import { checkForNotifications, displayNotificationForm } from './notifications';
 
 //Create a to-do list array to hold the todo objects
 export let myToDoList = [];
@@ -23,15 +24,14 @@ export function renderDashboard() {
     }
 
     render(myToDoList);
-    searchBar();
 };
 
 renderDashboard();
 
 //re-render as needed
 export function render(arr) {
-    removeChildren();
     if (arr.length !== 0) {
+        removeChildren();
         addTaskToDashboard(arr);
         deleteFromDashboard();
         editDate();

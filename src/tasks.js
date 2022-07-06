@@ -3,6 +3,7 @@ import { deleteFromDashboard, removeChildren } from "./reset";
 import { toggleCompleted, editDate, adjustPriority } from "./toggle";
 import { resetFormValues } from "./forms";
 import { displayProjects, showToday, showWeek } from "./UI";
+import { checkForNotifications, populateNotifications } from "./notifications";
 
 //Create a factory function that generates todo objects
 const toDo = function(listnum, title, notes, date, project, completed, remind, priority ) {
@@ -125,4 +126,8 @@ export function addTaskToDashboard(arr) {
         dateInput.value = element.date;
         dateCheck.appendChild(dateInput);
     });
+
+    //Upon submitting the task array, check for any notifications;
+    populateNotifications();
+    checkForNotifications();
 };

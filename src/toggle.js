@@ -1,4 +1,5 @@
-import { saveToLocalStorage, myToDoList } from "./index";
+import { saveToLocalStorage, myToDoList, renderDashboard, render } from "./index";
+import { checkForNotifications } from "./notifications";
 
 //Create a function to toggle between Completed and Not Completed on the task object
 export function toggleCompleted() {
@@ -38,6 +39,7 @@ export function editDate() {
         let x = element.parentElement.firstChild.textContent;
         myToDoList[Number(x)].date = element.firstChild.value;
         saveToLocalStorage();
+        render(myToDoList);
        });
     });
 };
