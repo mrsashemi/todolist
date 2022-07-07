@@ -103,6 +103,7 @@ export function displayProjects() {
             button.addEventListener('click', () => {
                 let selectedProjectList = myToDoList.filter(element => element.project == button.textContent);
                 sectionTitle.textContent = button.textContent;
+                sectionTitle.id = button.textContent;
                 removeChildren();
                 render(selectedProjectList);
             })

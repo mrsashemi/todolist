@@ -38,6 +38,8 @@ export function render(arr) {
         toggleCompleted();
         adjustPriority();
         keepSlashed();
+    } else {
+        document.querySelector(".taskListItem").style["pointer-events"] = "none";
     }
 }
 

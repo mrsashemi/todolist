@@ -1,4 +1,5 @@
 import { saveToLocalStorage, myToDoList } from "./index";
+import { sectionTitle } from "./notifications";
 import { addTaskToDashboard } from "./tasks"
 
 //Create a function to refresh the document grid containing book objects from the array*/

@@ -1,6 +1,6 @@
 import { myToDoList, saveToLocalStorage } from "./index";
 import { deleteFromDashboard, removeChildren } from "./reset";
-import { toggleCompleted, editDate, adjustPriority } from "./toggle";
+import { toggleCompleted, editDate, adjustPriority, toggleReminder, adjustProject, editTaskTitle, editTaskNotes } from "./toggle";
 import { resetFormValues } from "./forms";
 import { displayProjects, showToday, showWeek } from "./UI";
 import { checkForNotifications, populateNotifications } from "./notifications";
@@ -45,7 +45,6 @@ export function addTaskToDoListArray() {
     //save to local storage
     saveToLocalStorage();
     //activate delete, toggle, and UI functions upon submitting todo form
-    deleteFromDashboard();
     toggleCompleted();
     editDate();
     adjustPriority();
@@ -76,7 +75,7 @@ export function addTaskToDashboard(arr) {
         let addedProject = document.createElement('div');
         addedProject.className = "addedProject";
         (element.project === "") ? addedProject.textContent = "No Project" : addedProject.textContent = element.project;
-        taskTitle.appendChild(addedProject);
+        todoTask.appendChild(addedProject);
 
         let noteSection = document.createElement('p');
         noteSection.className = "notes";
@@ -143,4 +142,11 @@ export function addTaskToDashboard(arr) {
     //Upon submitting the task array, check for any notifications;
     populateNotifications();
     checkForNotifications();
+
+    //Upon submitting the task array, activate reminder and project toggles
+    deleteFromDashboard();
+    toggleReminder();
+    adjustProject();
+    editTaskTitle();
+    editTaskNotes();
 };

@@ -6,7 +6,7 @@ import { displayHome } from "./UI";
 let notify = document.querySelector(".notify")
 let notifyPopUp = document.querySelector(".notifyPopUp");
 let displayN = document.querySelector(".displayNotifications")
-let sectionTitle = document.querySelector(".sectionTitle");
+export let sectionTitle = document.querySelector(".sectionTitle");
 
 //Create a function that displays and closes the notification dropdown
 export function displayNotificationForm() {
@@ -43,16 +43,14 @@ export function populateNotifications() {
         displayN.removeChild(displayN.firstChild);
     };
 
-        for (let i = 0; i < myToDoList.length; i++) {
-            //NOTE: for some reason format/date-fns is displaying the day before when formatting
-            let checkDate = format(new Date(myToDoList[i].date), "yyyy-MM-dd");
+    for (let i = 0; i < myToDoList.length; i++) {
+        //NOTE: for some reason format/date-fns is displaying the day before when formatting
+        let checkDate = format(new Date(myToDoList[i].date), "yyyy-MM-dd");
 
-            if (today === checkDate && myToDoList[i].remind === true) {
-                yesterList.push(myToDoList[i]);
-            }
+        if (today === checkDate && myToDoList[i].remind === true) {
+            yesterList.push(myToDoList[i]);
         }
-
-        console.log(today);
+    }
 
     yesterList.forEach(element => {
         let taskTitle = document.createElement('li');

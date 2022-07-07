@@ -605,7 +605,7 @@ li > img {
 /*a blur filter is used to create a frosted glass effect as the background to each div, upon hovering the glass somewhat clears up*/
 .projects > div {
     display: grid;
-    grid-template-rows: 1.5fr 4fr 1fr;
+    grid-template-rows: 0.75fr 0.75fr 4fr 1fr;
     position: relative;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(0.75vmin);
@@ -642,17 +642,34 @@ li > img {
     font-size: 2.25vmin;
     margin: 1vmin 0 0 0;
     padding-left: 1vmin;
+    cursor: text;
 }
+
+.notes {
+    margin-bottom: 5vmin;
+    cursor: text;
+}
+
+.notes:hover {
+    color: var(--secondary-color);
+}
+
 
 .addedProject {
     height: fit-content;
     width: fit-content;
     font-size: 1.5vmin;
     margin-top: 1vmin;
+    margin-bottom: 1vmin;
+    margin-left: 0.75vmin;
     padding: 0.1vmin 0.5vmin 0.1vmin 0.5vmin;
     background-color: var(--secondary-color);
     border-radius: 1vmin;
     cursor: pointer;
+}
+
+.addedProject:hover {
+    background-color: var(--main-color);
 }
 
 .projects > div > p {
@@ -688,6 +705,7 @@ li > img {
     border-left: 1vmin solid transparent;
     transform: rotate(35deg);
     opacity: 0.5;
+    top: 0.35vmin;
 }
 
 .completed:hover {
@@ -730,7 +748,7 @@ li > img {
     position: relative;
     font-size: 2vmin;
     height: fit-content;
-    bottom: 1vmin;
+    bottom: 0.5vmin;
     background-color: rgba(255, 255, 255, 0.5);
     padding: 0.25vmin 0.5vmin 0.25vmin 0.5vmin;
     border-radius: 1vmin;
@@ -811,7 +829,7 @@ li > img {
 
 .reminder {
     position: relative;
-    bottom: 0.6vmin;
+    bottom: 0.25vmin;
 }
 
 /*Date input styles borrowed from Ageir Hoem on codepen.io, modified to suit style of page*/
