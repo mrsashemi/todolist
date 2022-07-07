@@ -1,6 +1,7 @@
-import { saveToLocalStorage, myToDoList } from "./index";
+import { saveToLocalStorage, myToDoList, render } from "./index";
 import { sectionTitle } from "./notifications";
 import { addTaskToDashboard } from "./tasks"
+import { displayHome } from "./UI";
 
 //Create a function to refresh the document grid containing book objects from the array*/
 export function removeChildren() {
@@ -12,21 +13,28 @@ export function removeChildren() {
 };
 
 //Create a function to remove object from array and from document upon clicking delete button
-export function deleteFromDashboard() {
+export function deleteFromDashboard(arr) {
     let deleteButton = document.querySelectorAll('.trash');
     deleteButton.forEach(element => {
         element.addEventListener('click', () => {
+            //find the index of element in the array that needs to be sliced
             let x = element.parentElement.firstChild.textContent;
-            myToDoList.splice(Number(x), 1);
+            arr.splice(Number(x), 1);
 
-            myToDoList.forEach(e => {
-                e.listNum = myToDoList.indexOf(e);
-                console.log(e.listNum)
+            //filter the original array in case deleting within a different tab or project
+            let newArr = myToDoList.filter(e => e.title != element.parentElement.parentElement.firstChild.textContent)
+            myToDoList.splice(0, myToDoList.length);
+            myToDoList.push(...newArr);
+
+            //adjust the index
+            arr.forEach(e => {
+                e.listnum = arr.indexOf(e);
             });
 
+            //render the UI
             element.parentElement.parentElement.remove();
             removeChildren();
-            addTaskToDashboard(myToDoList);
+            render(arr);
             saveToLocalStorage();
             deleteFromDashboard();
         });

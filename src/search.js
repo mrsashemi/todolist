@@ -18,7 +18,7 @@ export function searchBar() {
             //Simulate a toggle feature by rendering the task array filtered for the input
             return (isVisible) ? render(myToDoList.filter(el => el.title.toUpperCase().includes(value))) : null;
         })
-        displayHome();
+        displayHome(myToDoList);
     })
 }
 

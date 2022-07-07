@@ -33,13 +33,11 @@ export function render(arr) {
     if (arr.length !== 0) {
         removeChildren();
         addTaskToDashboard(arr);
-        deleteFromDashboard();
+        deleteFromDashboard(arr);
         editDate();
         toggleCompleted();
         adjustPriority();
         keepSlashed();
-    } else {
-        document.querySelector(".taskListItem").style["pointer-events"] = "none";
     }
 }
 

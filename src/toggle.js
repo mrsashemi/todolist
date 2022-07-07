@@ -94,7 +94,6 @@ export function toggleReminder() {
         element.firstChild.addEventListener("change", () => {
             let x = element.parentElement.firstChild.textContent;
             (element.firstChild.checked === true) ? myToDoList[Number(x)].remind = true : myToDoList[Number(x)].remind = false;
-            console.log(myToDoList[Number(x)].remind)
             saveToLocalStorage();
             render(myToDoList);
         })
@@ -195,7 +194,6 @@ export function editTaskTitle() {
                 if (!isClickInside && !exceptAddButton) {
                     newTitleInput.style.display = "none";
                     element.style.display = "block";
-                    myToDoList[Number(x)].title = element.textContent;
                 };
             });
 
@@ -245,7 +243,6 @@ export function editTaskNotes() {
                 if (!isClickInside && !exceptAddButton) {
                     newNotesInput.style.display = "none";
                     element.style.display = "block";
-                    myToDoList[Number(x)].title = element.textContent;
                 };
             });
 

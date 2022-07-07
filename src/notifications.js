@@ -63,7 +63,7 @@ export function populateNotifications() {
             sectionTitle.textContent = `${element.title} is Due Tomorrow`
             let selectedTask = [element];
             render(selectedTask);
-            displayHome();
+            displayHome(myToDoList);
         })
     })
 }
@@ -71,7 +71,6 @@ export function populateNotifications() {
 
 //Create a function that highlights 
 export function checkForNotifications() {
-    console.log(displayN.childNodes.length)
     if (displayN.childNodes.length > 0) {
         notify.style["box-shadow"] = "0 0 2vmin 0.25vmin red";
     } else {

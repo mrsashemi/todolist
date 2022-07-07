@@ -17,7 +17,7 @@ export function showToday() {
         sectionTitle.textContent = "Today"
         removeChildren();
         render(todayList);
-        displayHome();
+        displayHome(myToDoList);
         listProjects.style.display = 'none';
     })
 }
@@ -42,7 +42,7 @@ export function showWeek() {
         sectionTitle.textContent = "Weekly"
         removeChildren();
         render(weekList);
-        displayHome();
+        displayHome(myToDoList);
         listProjects.style.display = 'none';
     });
 };
@@ -50,12 +50,12 @@ export function showWeek() {
 showWeek();
 
 //Create function to return to display all tasks in Home
-export function displayHome() {
+export function displayHome(arr) {
     let homeButton = document.querySelector('.home');
 
     homeButton.addEventListener('click', () => {
         sectionTitle.textContent = 'Home';
-        render(myToDoList);
+        render(arr);
         listProjects.style.display = 'none';
     });
 };
@@ -103,13 +103,12 @@ export function displayProjects() {
             button.addEventListener('click', () => {
                 let selectedProjectList = myToDoList.filter(element => element.project == button.textContent);
                 sectionTitle.textContent = button.textContent;
-                sectionTitle.id = button.textContent;
                 removeChildren();
                 render(selectedProjectList);
             })
         })
 
-        displayHome();
+        displayHome(myToDoList);
     });
 };
 

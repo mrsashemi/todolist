@@ -45,6 +45,7 @@ export function addTaskToDoListArray() {
     //save to local storage
     saveToLocalStorage();
     //activate delete, toggle, and UI functions upon submitting todo form
+    deleteFromDashboard(myToDoList);
     toggleCompleted();
     editDate();
     adjustPriority();
@@ -144,7 +145,6 @@ export function addTaskToDashboard(arr) {
     checkForNotifications();
 
     //Upon submitting the task array, activate reminder and project toggles
-    deleteFromDashboard();
     toggleReminder();
     adjustProject();
     editTaskTitle();
