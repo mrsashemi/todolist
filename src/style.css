@@ -644,6 +644,17 @@ li > img {
     padding-left: 1vmin;
 }
 
+.addedProject {
+    height: fit-content;
+    width: fit-content;
+    font-size: 1.5vmin;
+    margin-top: 1vmin;
+    padding: 0.1vmin 0.5vmin 0.1vmin 0.5vmin;
+    background-color: var(--secondary-color);
+    border-radius: 1vmin;
+    cursor: pointer;
+}
+
 .projects > div > p {
     font-size: 2vmin;
     margin-top: 0;
@@ -654,7 +665,7 @@ li > img {
     position: relative;
     list-style: none;
     display: flex;
-    height: 3vmin;
+    height: fit-content;
     width: 80%;
     margin: 0;
     padding: 0;
@@ -718,6 +729,7 @@ li > img {
 .priority {
     position: relative;
     font-size: 2vmin;
+    height: fit-content;
     bottom: 1vmin;
     background-color: rgba(255, 255, 255, 0.5);
     padding: 0.25vmin 0.5vmin 0.25vmin 0.5vmin;
@@ -729,18 +741,77 @@ li > img {
 }
 
 .trash {
+    justify-self: end;
+    align-self: end;
     position: relative;
-    font-size: 3vmin;
-    bottom: 1.25vmin;
+    width: 2vmin;
+    height: 2vmin;
+    border: 0.3vmin solid transparent;
+    box-shadow:
+        0 0 0 0.2vmin,
+        inset -0.2vmin 0 0,
+        inset 0.2vmin 0 0;
+    border-radius: 0.25vmin;
+    top: -2vmin;
     opacity: 0.5;
 }
 
-.trash:hover {
-    opacity: 0.75;
+.trash::after,
+.trash::before {
+    content: "";
+    box-sizing: border-box;
+    position: absolute
 }
+
+.trash::after {
+    background: currentColor;
+    border-radius: 0.3vmin;
+    width: 2.6vmin;
+    height: 0.4vmin;
+    top: -0.5vmin;
+    left: -0.6vmin;
+}
+
+.trash::before {
+    width: 2vmin;
+    height: 0.5vmin;
+    border: 0.3vmin solid;
+    border-bottom: transparent;
+    border-top-left-radius: 0.3vmin;
+    border-top-right-radius: 0.3vmin;
+    top: -0.9vmin;
+    left: -0.3vmin;
+}
+
+
+.trash:hover {
+    box-shadow:
+    0 0 0 0.2vmin,
+    inset -0.2vmin 0 0,
+    inset 0.2vmin 0 0,
+    0vmin -0.6vmin 0.65vmin red;
+}
+
+.trash:hover::after {
+    transform: rotate(45deg);
+    top: -1vmin;
+    left: 0vmin;
+}
+
+.trash:hover::before {
+    transform: rotate(45deg);
+    top: -1.35vmin;
+    left: 0.5vmin;
+}
+
 
 .trash:active {
     opacity: 1;
+}
+
+.reminder {
+    position: relative;
+    bottom: 0.6vmin;
 }
 
 /*Date input styles borrowed from Ageir Hoem on codepen.io, modified to suit style of page*/

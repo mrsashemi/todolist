@@ -52,7 +52,6 @@ export function addTaskToDoListArray() {
     showToday();
     showWeek();
     displayProjects();
-    searchBar();
 };
 
 
@@ -74,6 +73,11 @@ export function addTaskToDashboard(arr) {
         taskTitle.textContent = element.title;
         todoTask.appendChild(taskTitle);
 
+        let addedProject = document.createElement('div');
+        addedProject.className = "addedProject";
+        (element.project === "") ? addedProject.textContent = "No Project" : addedProject.textContent = element.project;
+        taskTitle.appendChild(addedProject);
+
         let noteSection = document.createElement('p');
         noteSection.className = "notes";
         noteSection.textContent = element.notes;
@@ -90,6 +94,15 @@ export function addTaskToDashboard(arr) {
 
         let completeCheck = document.createElement('li');
         completeCheck.className = "completed";
+
+        let remindMe = document.createElement('li');
+        remindMe.className = "reminder";
+        let remindInput = document.createElement('input');
+        remindInput.type = "checkbox";
+        remindInput.name = "reminder";
+        remindInput.id = "reminder";
+        (element.remind === true) ? remindInput.checked = true : remindInput.checked = false;
+        remindMe.appendChild(remindInput);
 
         if (element.completed == true) {
             completeCheck.style.opacity = 1;
@@ -112,13 +125,13 @@ export function addTaskToDashboard(arr) {
 
         priorityCheck.className = "priority";
         let trashButton = document.createElement('li');
-        trashButton.textContent = "X";
         trashButton.className = "trash";
 
         taskManagement.appendChild(listNumber);
         taskManagement.appendChild(completeCheck);
         taskManagement.appendChild(dateCheck);
         taskManagement.appendChild(priorityCheck);
+        taskManagement.appendChild(remindMe);
         taskManagement.appendChild(trashButton);
 
         let dateInput = document.createElement('input');
