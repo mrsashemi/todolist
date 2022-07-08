@@ -7,6 +7,14 @@ module.exports = {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
     },
+    plugins: [
+        new CopyPlugin({
+          patterns: [
+            { from: "source", to: "dest" },
+            { from: "other", to: "public" },
+          ],
+        }),
+      ],
     module: {
         rules: [
             {
