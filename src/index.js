@@ -5,6 +5,16 @@ import { editDate, toggleCompleted, adjustPriority, keepSlashed } from './toggle
 import { searchBar } from './search';
 import { checkForNotifications, displayNotificationForm } from './notifications';
 import hasibpunk from './images/hasibpunk.jpeg'
+import { set } from 'date-fns';
+
+//DOM Img adjustments for viewing on github
+function setDomProfileImg() {
+    document.getElementById("smallProfile").src = hasibpunk;
+    document.getElementById("bigProfile").src = hasibpunk;
+}
+
+setDomProfileImg();
+
 
 //Create a to-do list array to hold the todo objects
 export let myToDoList = [];
