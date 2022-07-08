@@ -4,6 +4,7 @@ import { addTaskToDashboard } from './tasks';
 import { editDate, toggleCompleted, adjustPriority, keepSlashed } from './toggle';
 import { searchBar } from './search';
 import { checkForNotifications, displayNotificationForm } from './notifications';
+import hasibpunk from './images/hasibpunk.jpeg'
 
 //Create a to-do list array to hold the todo objects
 export let myToDoList = [];
