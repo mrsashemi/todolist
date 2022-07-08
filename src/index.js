@@ -8,10 +8,10 @@ import hasibpunk from './images/hasibpunk.jpeg'
 import { set } from 'date-fns';
 
 //DOM Img adjustments for viewing on github
-function setDomProfileImg() {
+/*function setDomProfileImg() {
     document.getElementById("smallProfile").src = hasibpunk;
     document.getElementById("bigProfile").src = hasibpunk;
-}
+}*/
 
 setDomProfileImg();
 
