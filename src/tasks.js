@@ -96,13 +96,21 @@ export function addTaskToDashboard(arr) {
         completeCheck.className = "completed";
 
         let remindMe = document.createElement('li');
-        remindMe.className = "reminder";
+        remindMe.className = "reminderLi";
         let remindInput = document.createElement('input');
         remindInput.type = "checkbox";
         remindInput.name = "reminder";
         remindInput.id = "reminder";
         (element.remind === true) ? remindInput.checked = true : remindInput.checked = false;
-        remindMe.appendChild(remindInput);
+        let slider = document.createElement('span');
+        slider.className = "slider2";
+        let label = document.createElement('label');
+        label.className = "reminder"
+        remindMe.appendChild(label);
+        label.appendChild(remindInput);
+        label.appendChild(slider);
+
+
 
         if (element.completed == true) {
             completeCheck.style.opacity = 1;
@@ -144,7 +152,7 @@ export function addTaskToDashboard(arr) {
     populateNotifications();
     checkForNotifications();
 
-    //Upon submitting the task array, activate reminder and project toggles
+    //Upon submitting the task array, activate reminder, project, and task editing toggles
     toggleReminder();
     adjustProject();
     editTaskTitle();

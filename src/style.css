@@ -638,6 +638,10 @@ li > img {
     -webkit-transition: all 1s ease;
 }
 
+#guide {
+    pointer-events: none;
+}
+
 .task {
     font-size: 2.25vmin;
     margin: 1vmin 0 0 0;
@@ -827,10 +831,61 @@ li > img {
     opacity: 1;
 }
 
+.reminderLi {
+    position: relative;
+    bottom: 0.5vmin;
+}
+
 .reminder {
     position: relative;
     bottom: 0.25vmin;
+    display: inline-block;
+    width: 3vmin;
+    height: 2vmin;
+    margin: 0.4vmin;
 }
+
+#reminder {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider2{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(255,168,76,0.5); 
+    box-shadow: inset 2px 3px 2px rgba(0, 0, 0, 0.2), inset -2px -3px 2px rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    border-radius: 34px;
+    transition: 0.4s;
+  }
+
+  .slider2::before{
+    content:'';
+    position: absolute;
+    left: 0.15vmin;
+    bottom: 0.2vmin;
+    height: 1.5vmin;
+    width: 1.5vmin;
+    background-color: var(--secondary-color);
+    box-shadow: inset 0.1vmin 0.15vmin 0.1vmin rgba(255, 255, 255, 0.1), inset -2px -3px 2px rgba(0, 0, 0, 0.2), 2px 3px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    transition: 0.4s;
+  }
+
+  #reminder:checked + .slider2{
+    background-color: rgba(109,0,25,0.5);
+  }
+
+  #reminder:checked + .slider2::before{
+    content: 'Remind';
+    transform: translatex(1.25vmin);
+    background-color: var(--main-color);
+  }
 
 /*Date input styles borrowed from Ageir Hoem on codepen.io, modified to suit style of page*/
 li > input[type="date"] {
